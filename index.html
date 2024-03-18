@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; align-items:center; justify-content:center; ">
+        <canvas width="200px" height="200px" style="border:2px solid black" id="canvas"></canvas>
+        <label>link website: <small><i>*enter untuk submit*</i></small></label>
+        <input placeholder="contoh https://google.com" id="qrInput" onchange="generateQR()"/>
+        <button onchange="generateQR()">submit</button>
+    </div>
+    <script src="node_modules/qrcode/build/qrcode.js"></script>
+    <script>
+        function generateQR(){
+            let canvas= document.getElementById("canvas")
+            let qrInput= document.getElementById("qrInput")
+
+            QRCode.toCanvas(canvas, qrInput.value, () =>{
+                if(error) console.error(error)
+                console.log('berhasil')
+            })
+        }
+    </script>
+</body>
+</html>
